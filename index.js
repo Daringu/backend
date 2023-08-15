@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import errorMiddleware from "./middleware/error-middleware.js";
 import cookieParser from "cookie-parser";
+import todoRouter from "./todos-module/todo.router.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(
 app.use(json());
 app.use(cookieParser());
 app.use("/api", userRouter);
+app.use('/api',todoRouter);
 app.use(errorMiddleware);
 
 const DB_URL = process.env.DB_URL;

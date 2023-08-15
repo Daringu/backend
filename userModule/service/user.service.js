@@ -125,14 +125,4 @@ class UserService {
   }
 }
 
-// const todo = await Todo.create({
-//   text: "hello todo",
-//   user_id: user._id
-// });
-
-// await user.updateOne({
-//   $set: {
-//     todos: [...user.todos, todo._id]
-//   }
-// });
 export default new UserService();
