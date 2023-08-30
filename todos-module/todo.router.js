@@ -1,11 +1,33 @@
-import Router from 'express'
+import Router from "express";
 import todoController from "./controller/todo.controller.js";
-import authMiddleware, {isActivatedMiddleware} from "../middleware/auth-middleware.js";
+import authMiddleware, {
+  isActivatedMiddleware
+} from "../middleware/auth-middleware.js";
 
-const todoRouter=new Router();
+const todoRouter = new Router();
 
-todoRouter.post('/todo',authMiddleware,isActivatedMiddleware,todoController.addTodo);
-todoRouter.put('/todo',authMiddleware,isActivatedMiddleware,todoController.updateTodo)
-todoRouter.delete('/todo',authMiddleware,isActivatedMiddleware,todoController.deleteTodo)
-todoRouter.get('/todo',authMiddleware,isActivatedMiddleware,todoController.getTodos)
-export default  todoRouter
+todoRouter.post(
+  "/todo",
+  authMiddleware,
+  isActivatedMiddleware,
+  todoController.addTodo
+);
+todoRouter.patch(
+  "/todo",
+  authMiddleware,
+  isActivatedMiddleware,
+  todoController.updateTodo
+);
+todoRouter.delete(
+  "/todo",
+  authMiddleware,
+  isActivatedMiddleware,
+  todoController.deleteTodo
+);
+todoRouter.get(
+  "/todo",
+  authMiddleware,
+  isActivatedMiddleware,
+  todoController.getTodos
+);
+export default todoRouter;

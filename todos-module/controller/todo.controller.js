@@ -1,5 +1,4 @@
 import todoService from "../service/todoService.js";
-import {json} from "express";
 
 class TodoController{
     constructor() {
