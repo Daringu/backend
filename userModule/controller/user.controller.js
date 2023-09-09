@@ -17,12 +17,12 @@ class UserController {
   async loginUser(req, res, next) {
     try {
       const user = await userService.loginUser(req.body);
-      res.cookie("token", user.accessToken, {
-        maxAge: 60 * 60 * 1000
-      });
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true
+      });
+      res.cookie("token", user.accessToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000
       });
       return res.json({ ...user });
     } catch (error) {
@@ -40,12 +40,12 @@ class UserController {
       }
 
       const user = await userService.createNewUser(req.body);
-      res.cookie("token", user.accessToken, {
-        maxAge: 60 * 60 * 1000
-      });
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true
+      });
+      res.cookie("token", user.accessToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000
       });
       return res.json({ ...user });
     } catch (error) {
@@ -66,6 +66,7 @@ class UserController {
     try {
       const { refreshToken } = req.cookies;
       const token = await userService.logOut(refreshToken);
+      res.clearCookie("token");
       res.clearCookie("refreshToken");
       return res.json(token);
     } catch (error) {
@@ -80,6 +81,9 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true
+      });
+      res.cookie("token", user.accessToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000
       });
       return res.json({ ...user });
     } catch (error) {

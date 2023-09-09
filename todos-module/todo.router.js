@@ -24,10 +24,5 @@ todoRouter.delete(
   isActivatedMiddleware,
   todoController.deleteTodo
 );
-todoRouter.get(
-  "/todo",
-  authMiddleware,
-  isActivatedMiddleware,
-  todoController.getTodos
-);
+todoRouter.get("/todo", authMiddleware, todoController.getTodos);
 export default todoRouter;

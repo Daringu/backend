@@ -14,11 +14,10 @@ class UserService {
           username
         },
         {
-          email: email
+          email
         }
       ]
     });
-
     if (check) {
       throw ApiError.BadRequest("such user already exists");
     }
