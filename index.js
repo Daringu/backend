@@ -21,7 +21,7 @@ app.use(
 app.use(json());
 app.use(cookieParser());
 app.use("/api", userRouter);
-app.use('/api',todoRouter);
+app.use("/api", todoRouter);
 app.use(errorMiddleware);
 
 const DB_URL = process.env.DB_URL;

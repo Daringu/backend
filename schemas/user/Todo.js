@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const Todo = new Schema({
+export const Todo = new Schema({
   text: {
     type: String,
     required: true
@@ -9,10 +9,10 @@ const Todo = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  status:{
-    type:String,
+  status: {
+    type: String,
     required: true,
-    default:'active'
+    default: "active"
   }
 });
 

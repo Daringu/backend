@@ -6,12 +6,6 @@ import authMiddleware, {
 } from "../middleware/auth-middleware.js";
 const userRouter = new Router();
 
-userRouter.get(
-  "/users",
-  authMiddleware,
-  isActivatedMiddleware,
-  userController.getAllUsers
-);
 userRouter.post(
   "/registrate",
   body("email").isEmail(),
@@ -22,4 +16,5 @@ userRouter.post("/login", userController.loginUser);
 userRouter.get("/activate/:link", userController.verifyEmail);
 userRouter.post("/logout", userController.logOut);
 userRouter.get("/refresh", userController.refresh);
+userRouter.get("/authorize", authMiddleware, userController.authorize);
 export default userRouter;

@@ -13,14 +13,13 @@ export default function(req, res, next) {
     }
 
     const userData = tokenService.validateAccessToken(accessToken);
-
     if (!userData) {
       return next(ApiError.UnauthorizedError());
     }
-
-    req.user = {...userData};
+    req.user = { ...userData };
     next();
   } catch (error) {
+    console.log(error);
     return next(ApiError.UnauthorizedError());
   }
 }

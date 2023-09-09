@@ -14,6 +14,7 @@ class TodoService {
       return new todoDto(e);
     });
   }
+
   async addTodo(userId, todo) {
     if (!todo) {
       throw ApiError.BadRequest("no todo");
