@@ -19,12 +19,14 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       return res.json({ ...user });
     } catch (error) {
@@ -45,12 +47,14 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       return res.json({ ...user });
     } catch (error) {
@@ -86,12 +90,14 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true
+        secure: true,
+        domain: ".vercel.app"
       });
       return res.json({ ...user });
     } catch (error) {
