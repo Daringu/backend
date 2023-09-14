@@ -20,14 +20,14 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
         // domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
 
         // domain: env.COOKIE_DOMAIN
       });
@@ -51,7 +51,7 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
 
         // domain: env.COOKIE_DOMAIN
       });
@@ -59,7 +59,7 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
 
         // domain: env.COOKIE_DOMAIN
       });
@@ -98,14 +98,14 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
         // domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "lax"
+        sameSite: "None"
         // domain: env.COOKIE_DOMAIN
       });
       return res.json({ ...user });
