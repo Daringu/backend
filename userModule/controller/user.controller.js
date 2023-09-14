@@ -18,11 +18,13 @@ class UserController {
       const user = await userService.loginUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       return res.json({ ...user });
     } catch (error) {
@@ -42,11 +44,13 @@ class UserController {
       const user = await userService.createNewUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       return res.json({ ...user });
     } catch (error) {
@@ -81,11 +85,13 @@ class UserController {
       const user = await userService.refresh(refreshToken);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false
+        httpOnly: false,
+        secure: true
       });
       return res.json({ ...user });
     } catch (error) {
