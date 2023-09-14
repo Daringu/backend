@@ -20,13 +20,13 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
 
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
 
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       return res.json({ ...user });
     } catch (error) {
@@ -48,13 +48,13 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
 
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
 
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       return res.json({ ...user });
     } catch (error) {
@@ -90,12 +90,12 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        domain: env.CLIENT_URL
+        domain: env.COOKIE_DOMAIN
       });
       return res.json({ ...user });
     } catch (error) {
