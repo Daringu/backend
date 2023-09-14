@@ -3,10 +3,9 @@ import ApiError from "../exeptions/api-errors.js";
 import tokenService from "../userModule/service/token.service.js";
 
 export default function(req, res, next) {
+  console.log(req.cookies);
   try {
     const { token } = req.cookies;
-    const parsed = cookie.parse(token);
-    console.log(parsed, token);
     if (!token) {
       return next(ApiError.UnauthorizedError());
     }
