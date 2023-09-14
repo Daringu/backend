@@ -13,6 +13,6 @@ userRouter.post(
 userRouter.post("/login", userController.loginUser);
 userRouter.get("/activate/:link", userController.verifyEmail);
 userRouter.post("/logout", userController.logOut);
-userRouter.get("/refresh", userController.refresh);
-userRouter.get("/authorize", authMiddleware, userController.authorize);
+userRouter.post("/refresh", userController.refresh);
+userRouter.post("/authorize", authMiddleware, userController.authorize);
 export default userRouter;
