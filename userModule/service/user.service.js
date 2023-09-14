@@ -51,12 +51,11 @@ class UserService {
   async loginUser({ username, password }) {
     const user = await User.findOne({
       username
-    });
+    }).populate("teams");
 
     if (!user) {
       throw ApiError.BadRequest("such user does not exist");
     }
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       throw ApiError.BadRequest("Wrong password");
@@ -110,7 +109,9 @@ class UserService {
       throw ApiError.UnauthorizedError();
     }
 
-    const user = await User.findById(userData.id);
+    const user = await User.findById(userData.id)
+      .populate("teams")
+      .populate("messages");
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);

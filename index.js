@@ -8,6 +8,15 @@ import cookieParser from "cookie-parser";
 import todoRouter from "./todos-module/todo.router.js";
 import { Server } from "socket.io";
 import http from "http";
+import teamRouter from "./teamModule/teamRouter.js";
+import {
+  handleAddTodo,
+  handleUpdateTodo,
+  handleDeleteTodo,
+  sendInvitation
+} from "./ws-handlers/handlers.js";
+import Team from "./schemas/user/Team.js";
+import { messageRouter } from "./messageModule/messageRouter.js";
 
 dotenv.config();
 
@@ -32,15 +41,35 @@ app.use(json());
 app.use(cookieParser());
 app.use("/api", userRouter);
 app.use("/api", todoRouter);
+app.use("/api/team", teamRouter);
+app.use("/api/message", messageRouter);
 app.use(errorMiddleware);
 
-const DB_URL = process.env.DB_URL;
 io.on("connection", socket => {
   console.log("a user connected");
-  socket.on("message", message => {
-    io.emit("message", message);
+  socket.on("join-team", async ({ teamId, userId }) => {
+    try {
+      const team = await Team.findById(teamId);
+      if (!team.users.includes(userId)) {
+        throw new Error("You are not a member of this team");
+      }
+      socket.join(teamId);
+    } catch (error) {
+      console.log(error);
+    }
   });
+  socket.on("join-user-room", userId => {
+    socket.join(userId);
+    console.log("joined", userId);
+    socket.emit("joined-user-room", userId);
+  });
+  handleUpdateTodo(io, socket);
+  handleAddTodo(io, socket);
+  handleDeleteTodo(io, socket);
+  sendInvitation(io, socket);
 });
+
+const DB_URL = process.env.DB_URL;
 
 const start = async () => {
   const db = await mongoose.connect(DB_URL);

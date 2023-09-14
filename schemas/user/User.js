@@ -26,7 +26,9 @@ const User = new Schema({
     type: Boolean,
     default: false
   },
-  todos: [{type: Schema.Types.ObjectId, ref: "Todo"}]
+  todos: [{ type: Schema.Types.ObjectId, ref: "Todo" }],
+  messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
+  teams: [{ type: Schema.Types.ObjectId, ref: "Team" }]
 });
 
 export default model("User", User);

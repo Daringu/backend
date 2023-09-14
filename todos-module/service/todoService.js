@@ -37,7 +37,6 @@ class TodoService {
     if (!todo) {
       throw ApiError.BadRequest("such todo doesnt exist");
     }
-    console.log(status);
     if (!statuses.includes(status)) {
       throw ApiError.BadRequest("wrong status");
     }

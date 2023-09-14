@@ -19,4 +19,7 @@ export default class ApiError extends Error {
   static UnactivatedEmailError() {
     return new ApiError(403, "Unactivated email");
   }
+  static NotIncluded() {
+    return new ApiError(403, "Not included");
+  }
 }

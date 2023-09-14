@@ -1,9 +1,7 @@
 import { Router } from "express";
 import userController from "./controller/user.controller.js";
 import { body } from "express-validator";
-import authMiddleware, {
-  isActivatedMiddleware
-} from "../middleware/auth-middleware.js";
+import authMiddleware from "../middleware/auth-middleware.js";
 const userRouter = new Router();
 
 userRouter.post(
