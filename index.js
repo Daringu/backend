@@ -23,7 +23,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const httpServer = http.createServer(app);
-
+app.use(cookieParser());
 const io = new Server(httpServer, {
   cors: {
     credentials: true,
@@ -39,7 +39,7 @@ app.use(
   })
 );
 app.use(json());
-app.use(cookieParser());
+
 app.use("/api", userRouter);
 app.use("/api", todoRouter);
 app.use("/api/team", teamRouter);
