@@ -6,8 +6,7 @@ import ApiError from "../../exeptions/api-errors.js";
 class UserController {
   async getAllUsers(req, res, next) {
     const users = await User.find();
-    return res.json({
-      status: 200,
+    return res.status(201).json({
       data: {
         users: users
       }
@@ -29,7 +28,7 @@ class UserController {
         secure: true,
         httpOnly: false
       });
-      return res.json({ ...user });
+      return res.status(201).json({ ...user });
     } catch (error) {
       next(error);
     }
@@ -57,7 +56,7 @@ class UserController {
         secure: true,
         httpOnly: false
       });
-      return res.json({ ...user });
+      return res.status(201).json({ ...user });
     } catch (error) {
       next(error);
     }
@@ -78,7 +77,7 @@ class UserController {
       const token = await userService.logOut(refreshToken);
       res.clearCookie("token");
       res.clearCookie("refreshToken");
-      return res.json(token);
+      return res.status(201).json(token);
     } catch (error) {
       next(error);
     }
@@ -100,7 +99,7 @@ class UserController {
         secure: true,
         httpOnly: false
       });
-      return res.json({ ...user });
+      return res.status(201).json({ ...user });
     } catch (error) {
       next(error);
     }
