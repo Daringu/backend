@@ -6,7 +6,7 @@ import ApiError from "../../exeptions/api-errors.js";
 class UserController {
   async getAllUsers(req, res, next) {
     const users = await User.find();
-    return res.status(201).json({
+    return res.json({
       data: {
         users: users
       }
@@ -18,17 +18,13 @@ class UserController {
       const user = await userService.loginUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        domain: env.CLIENT_URL,
-        secure: true,
         httpOnly: false
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        domain: env.CLIENT_URL,
-        secure: true,
         httpOnly: false
       });
-      return res.status(201).json({ ...user });
+      return res.json({ ...user });
     } catch (error) {
       next(error);
     }
@@ -46,17 +42,13 @@ class UserController {
       const user = await userService.createNewUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        domain: env.CLIENT_URL,
-        secure: true,
         httpOnly: false
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        domain: env.CLIENT_URL,
-        secure: true,
         httpOnly: false
       });
-      return res.status(201).json({ ...user });
+      return res.json({ ...user });
     } catch (error) {
       next(error);
     }
@@ -77,7 +69,7 @@ class UserController {
       const token = await userService.logOut(refreshToken);
       res.clearCookie("token");
       res.clearCookie("refreshToken");
-      return res.status(201).json(token);
+      return res.json(token);
     } catch (error) {
       next(error);
     }
@@ -89,17 +81,13 @@ class UserController {
       const user = await userService.refresh(refreshToken);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false,
-        secure: true,
-        domain: env.CLIENT_URL
+        httpOnly: false
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        domain: env.CLIENT_URL,
-        secure: true,
         httpOnly: false
       });
-      return res.status(201).json({ ...user });
+      return res.json({ ...user });
     } catch (error) {
       next(error);
     }
