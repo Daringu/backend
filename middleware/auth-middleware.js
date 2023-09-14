@@ -3,16 +3,12 @@ import tokenService from "../userModule/service/token.service.js";
 
 export default function(req, res, next) {
   try {
-    const authorizationHeader = req.headers.authorization;
-    if (!authorizationHeader) {
+    const { token } = req.cookies;
+    if (!token) {
       return next(ApiError.UnauthorizedError());
     }
 
-    const accessToken = authorizationHeader.split(" ")[1];
-    if (!accessToken) {
-      return next(ApiError.UnauthorizedError());
-    }
-    const userData = tokenService.validateAccessToken(accessToken);
+    const userData = tokenService.validateAccessToken(token);
     if (!userData) {
       return next(ApiError.UnauthorizedError());
     }
