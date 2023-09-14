@@ -18,13 +18,16 @@ class UserController {
       const user = await userService.loginUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
-
+        httpOnly: true,
+        secure: true,
+        path: "/"
         // domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        path: "/"
 
         // domain: env.COOKIE_DOMAIN
       });
@@ -46,13 +49,17 @@ class UserController {
       const user = await userService.createNewUser(req.body);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        path: "/"
 
         // domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        path: "/"
 
         // domain: env.COOKIE_DOMAIN
       });
@@ -89,12 +96,16 @@ class UserController {
       const user = await userService.refresh(refreshToken);
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        path: "/"
         // domain: env.COOKIE_DOMAIN
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        path: "/"
         // domain: env.COOKIE_DOMAIN
       });
       return res.json({ ...user });
