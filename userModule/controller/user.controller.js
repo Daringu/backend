@@ -19,13 +19,13 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
+
         domain: "front-three-azure.vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
+
         domain: "front-three-azure.vercel.app"
       });
       return res.json({ ...user });
@@ -47,13 +47,13 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
+
         domain: "front-three-azure.vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
+
         domain: "front-three-azure.vercel.app"
       });
       return res.json({ ...user });
@@ -90,13 +90,11 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
         domain: "front-three-azure.vercel.app"
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
-        secure: true,
         domain: "front-three-azure.vercel.app"
       });
       return res.json({ ...user });
