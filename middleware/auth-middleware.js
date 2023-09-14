@@ -1,15 +1,14 @@
 import { cookie } from "express-validator";
 import ApiError from "../exeptions/api-errors.js";
 import tokenService from "../userModule/service/token.service.js";
+import cookieParser from "cookie-parser";
 
 export default function(req, res, next) {
-  console.log(req.cookies);
   try {
     const { token } = req.cookies;
     if (!token) {
       return next(ApiError.UnauthorizedError());
     }
-
     const userData = tokenService.validateAccessToken(token);
     if (!userData) {
       return next(ApiError.UnauthorizedError());
@@ -22,7 +21,6 @@ export default function(req, res, next) {
 }
 
 export function isActivatedMiddleware(req, res, next) {
-  console.log(req.user);
   if (!req.user.isActivated) {
     return next(ApiError.UnactivatedEmailError());
   }
