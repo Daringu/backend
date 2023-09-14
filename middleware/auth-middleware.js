@@ -3,6 +3,7 @@ import tokenService from "../userModule/service/token.service.js";
 
 export default function(req, res, next) {
   try {
+    console.log(req);
     const { token } = req.cookies;
     if (!token) {
       return next(ApiError.UnauthorizedError());
