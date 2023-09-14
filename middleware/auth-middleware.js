@@ -1,3 +1,4 @@
+import { cookie } from "express-validator";
 import ApiError from "../exeptions/api-errors.js";
 import tokenService from "../userModule/service/token.service.js";
 
@@ -5,6 +6,8 @@ export default function(req, res, next) {
   try {
     console.log(req);
     const { token } = req.cookies;
+    const parsed = cookie.parse(token);
+    console.log(parsed);
     if (!token) {
       return next(ApiError.UnauthorizedError());
     }
