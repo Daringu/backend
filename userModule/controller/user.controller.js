@@ -20,11 +20,13 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         domain: env.CLIENT_URL,
+        secure: true,
         httpOnly: false
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         domain: env.CLIENT_URL,
+        secure: true,
         httpOnly: false
       });
       return res.json({ ...user });
@@ -46,11 +48,13 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         domain: env.CLIENT_URL,
+        secure: true,
         httpOnly: false
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         domain: env.CLIENT_URL,
+        secure: true,
         httpOnly: false
       });
       return res.json({ ...user });
@@ -87,11 +91,13 @@ class UserController {
       res.cookie("refreshToken", user.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: false,
+        secure: true,
         domain: env.CLIENT_URL
       });
       res.cookie("token", user.accessToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         domain: env.CLIENT_URL,
+        secure: true,
         httpOnly: false
       });
       return res.json({ ...user });
