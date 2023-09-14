@@ -27,14 +27,15 @@ const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
     credentials: true,
-    origin: process.env.CLIENT_URL
+    origin: [process.env.CLIENT_URL]
   }
 });
 
 app.use(
   cors({
     credentials: true,
-    origin: process.env.CLIENT_URL
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
   })
 );
 app.use(json());
